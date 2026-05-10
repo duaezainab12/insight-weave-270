@@ -9,18 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
-import { Route as DashboardUsersRouteImport } from './routes/dashboard.users'
-import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
-import { Route as DashboardRealtimeRouteImport } from './routes/dashboard.realtime'
-import { Route as DashboardInsightsRouteImport } from './routes/dashboard.insights'
-import { Route as DashboardHumanitarianRouteImport } from './routes/dashboard.humanitarian'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppUploadRouteImport } from './routes/app.upload'
+import { Route as AppRemindersRouteImport } from './routes/app.reminders'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppHistoryRouteImport } from './routes/app.history'
+import { Route as AppAnalysisIdRouteImport } from './routes/app.analysis.$id'
 
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -28,111 +34,125 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
+const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => DashboardRoute,
+  getParentRoute: () => AppRoute,
 } as any)
-const DashboardUsersRoute = DashboardUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => DashboardRoute,
+const AppUploadRoute = AppUploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => AppRoute,
 } as any)
-const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => DashboardRoute,
+const AppRemindersRoute = AppRemindersRouteImport.update({
+  id: '/reminders',
+  path: '/reminders',
+  getParentRoute: () => AppRoute,
 } as any)
-const DashboardRealtimeRoute = DashboardRealtimeRouteImport.update({
-  id: '/realtime',
-  path: '/realtime',
-  getParentRoute: () => DashboardRoute,
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
 } as any)
-const DashboardInsightsRoute = DashboardInsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => DashboardRoute,
+const AppHistoryRoute = AppHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AppRoute,
 } as any)
-const DashboardHumanitarianRoute = DashboardHumanitarianRouteImport.update({
-  id: '/humanitarian',
-  path: '/humanitarian',
-  getParentRoute: () => DashboardRoute,
+const AppAnalysisIdRoute = AppAnalysisIdRouteImport.update({
+  id: '/analysis/$id',
+  path: '/analysis/$id',
+  getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/dashboard/humanitarian': typeof DashboardHumanitarianRoute
-  '/dashboard/insights': typeof DashboardInsightsRoute
-  '/dashboard/realtime': typeof DashboardRealtimeRoute
-  '/dashboard/settings': typeof DashboardSettingsRoute
-  '/dashboard/users': typeof DashboardUsersRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/app/history': typeof AppHistoryRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reminders': typeof AppRemindersRoute
+  '/app/upload': typeof AppUploadRoute
+  '/app/': typeof AppIndexRoute
+  '/app/analysis/$id': typeof AppAnalysisIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard/humanitarian': typeof DashboardHumanitarianRoute
-  '/dashboard/insights': typeof DashboardInsightsRoute
-  '/dashboard/realtime': typeof DashboardRealtimeRoute
-  '/dashboard/settings': typeof DashboardSettingsRoute
-  '/dashboard/users': typeof DashboardUsersRoute
-  '/dashboard': typeof DashboardIndexRoute
+  '/login': typeof LoginRoute
+  '/app/history': typeof AppHistoryRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reminders': typeof AppRemindersRoute
+  '/app/upload': typeof AppUploadRoute
+  '/app': typeof AppIndexRoute
+  '/app/analysis/$id': typeof AppAnalysisIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteWithChildren
-  '/dashboard/humanitarian': typeof DashboardHumanitarianRoute
-  '/dashboard/insights': typeof DashboardInsightsRoute
-  '/dashboard/realtime': typeof DashboardRealtimeRoute
-  '/dashboard/settings': typeof DashboardSettingsRoute
-  '/dashboard/users': typeof DashboardUsersRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/app/history': typeof AppHistoryRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reminders': typeof AppRemindersRoute
+  '/app/upload': typeof AppUploadRoute
+  '/app/': typeof AppIndexRoute
+  '/app/analysis/$id': typeof AppAnalysisIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/dashboard'
-    | '/dashboard/humanitarian'
-    | '/dashboard/insights'
-    | '/dashboard/realtime'
-    | '/dashboard/settings'
-    | '/dashboard/users'
-    | '/dashboard/'
+    | '/app'
+    | '/login'
+    | '/app/history'
+    | '/app/profile'
+    | '/app/reminders'
+    | '/app/upload'
+    | '/app/'
+    | '/app/analysis/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard/humanitarian'
-    | '/dashboard/insights'
-    | '/dashboard/realtime'
-    | '/dashboard/settings'
-    | '/dashboard/users'
-    | '/dashboard'
+    | '/login'
+    | '/app/history'
+    | '/app/profile'
+    | '/app/reminders'
+    | '/app/upload'
+    | '/app'
+    | '/app/analysis/$id'
   id:
     | '__root__'
     | '/'
-    | '/dashboard'
-    | '/dashboard/humanitarian'
-    | '/dashboard/insights'
-    | '/dashboard/realtime'
-    | '/dashboard/settings'
-    | '/dashboard/users'
-    | '/dashboard/'
+    | '/app'
+    | '/login'
+    | '/app/history'
+    | '/app/profile'
+    | '/app/reminders'
+    | '/app/upload'
+    | '/app/'
+    | '/app/analysis/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRouteWithChildren
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -142,76 +162,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/': {
-      id: '/dashboard/'
+    '/app/': {
+      id: '/app/'
       path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRoute
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/dashboard/users': {
-      id: '/dashboard/users'
-      path: '/users'
-      fullPath: '/dashboard/users'
-      preLoaderRoute: typeof DashboardUsersRouteImport
-      parentRoute: typeof DashboardRoute
+    '/app/upload': {
+      id: '/app/upload'
+      path: '/upload'
+      fullPath: '/app/upload'
+      preLoaderRoute: typeof AppUploadRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/dashboard/settings': {
-      id: '/dashboard/settings'
-      path: '/settings'
-      fullPath: '/dashboard/settings'
-      preLoaderRoute: typeof DashboardSettingsRouteImport
-      parentRoute: typeof DashboardRoute
+    '/app/reminders': {
+      id: '/app/reminders'
+      path: '/reminders'
+      fullPath: '/app/reminders'
+      preLoaderRoute: typeof AppRemindersRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/dashboard/realtime': {
-      id: '/dashboard/realtime'
-      path: '/realtime'
-      fullPath: '/dashboard/realtime'
-      preLoaderRoute: typeof DashboardRealtimeRouteImport
-      parentRoute: typeof DashboardRoute
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/dashboard/insights': {
-      id: '/dashboard/insights'
-      path: '/insights'
-      fullPath: '/dashboard/insights'
-      preLoaderRoute: typeof DashboardInsightsRouteImport
-      parentRoute: typeof DashboardRoute
+    '/app/history': {
+      id: '/app/history'
+      path: '/history'
+      fullPath: '/app/history'
+      preLoaderRoute: typeof AppHistoryRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/dashboard/humanitarian': {
-      id: '/dashboard/humanitarian'
-      path: '/humanitarian'
-      fullPath: '/dashboard/humanitarian'
-      preLoaderRoute: typeof DashboardHumanitarianRouteImport
-      parentRoute: typeof DashboardRoute
+    '/app/analysis/$id': {
+      id: '/app/analysis/$id'
+      path: '/analysis/$id'
+      fullPath: '/app/analysis/$id'
+      preLoaderRoute: typeof AppAnalysisIdRouteImport
+      parentRoute: typeof AppRoute
     }
   }
 }
 
-interface DashboardRouteChildren {
-  DashboardHumanitarianRoute: typeof DashboardHumanitarianRoute
-  DashboardInsightsRoute: typeof DashboardInsightsRoute
-  DashboardRealtimeRoute: typeof DashboardRealtimeRoute
-  DashboardSettingsRoute: typeof DashboardSettingsRoute
-  DashboardUsersRoute: typeof DashboardUsersRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
+interface AppRouteChildren {
+  AppHistoryRoute: typeof AppHistoryRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppRemindersRoute: typeof AppRemindersRoute
+  AppUploadRoute: typeof AppUploadRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppAnalysisIdRoute: typeof AppAnalysisIdRoute
 }
 
-const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardHumanitarianRoute: DashboardHumanitarianRoute,
-  DashboardInsightsRoute: DashboardInsightsRoute,
-  DashboardRealtimeRoute: DashboardRealtimeRoute,
-  DashboardSettingsRoute: DashboardSettingsRoute,
-  DashboardUsersRoute: DashboardUsersRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
+const AppRouteChildren: AppRouteChildren = {
+  AppHistoryRoute: AppHistoryRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppRemindersRoute: AppRemindersRoute,
+  AppUploadRoute: AppUploadRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppAnalysisIdRoute: AppAnalysisIdRoute,
 }
 
-const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
-)
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRouteWithChildren,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

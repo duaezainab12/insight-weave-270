@@ -1,192 +1,269 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Brain, ChartBar, Globe2, Shield, Sparkles, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Stethoscope,
+  ScanLine,
+  Brain,
+  ShieldAlert,
+  Bell,
+  History,
+  ArrowRight,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AI Insights Dashboard — Real-time AI analytics for humanitarian impact" },
+      { title: "MedVision AI — Smarter, Safer Prescriptions" },
       {
         name: "description",
         content:
-          "Production-grade AI dashboard with real-time analytics, sentiment analysis, and humanitarian intelligence. Built for modern teams.",
+          "Upload any prescription and get instant AI-powered medicine explanations, interaction warnings, and patient-friendly summaries.",
       },
-      { property: "og:title", content: "AI Insights Dashboard" },
-      { property: "og:description", content: "Real-time AI analytics for humanitarian impact." },
     ],
   }),
   component: Landing,
 });
 
 const features = [
-  { icon: ChartBar, title: "Live Analytics", desc: "Real-time KPIs, trends, and heatmaps with sub-second updates." },
-  { icon: Sparkles, title: "AI Insights", desc: "Summarization, sentiment, anomaly detection, NL search." },
-  { icon: Globe2, title: "Humanitarian Module", desc: "Education, health, and resource allocation intelligence." },
-  { icon: Shield, title: "Enterprise Security", desc: "RBAC, audit trails, encrypted secrets, SSO ready." },
-  { icon: Zap, title: "Real-Time Engine", desc: "Streaming activity feed, alerts, and system health." },
-  { icon: Brain, title: "Smart Assistant", desc: "Context-aware chat that explains your data instantly." },
+  {
+    icon: ScanLine,
+    title: "OCR Extraction",
+    body: "Tesseract-powered text recognition turns blurry handwritten prescriptions into clean, structured data.",
+  },
+  {
+    icon: Brain,
+    title: "AI Medicine Insights",
+    body: "Plain-language explanations, dosing, side effects, and alternatives — for every medicine.",
+  },
+  {
+    icon: ShieldAlert,
+    title: "Interaction Detection",
+    body: "Identifies risky drug combinations with low / medium / high severity ratings before you take them.",
+  },
+  {
+    icon: Bell,
+    title: "Smart Reminders",
+    body: "Personalized medication schedules with daily tracking and notification-ready architecture.",
+  },
+  {
+    icon: History,
+    title: "Encrypted History",
+    body: "Every prescription is stored, searchable, and downloadable as a patient report.",
+  },
+  {
+    icon: Sparkles,
+    title: "Voice Assistant",
+    body: "Listen to your prescription summary read aloud with built-in text-to-speech.",
+  },
 ];
 
 function Landing() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background bg-hero">
       {/* Nav */}
-      <nav className="sticky top-0 z-30 border-b bg-background/70 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b bg-background/70 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-primary shadow-glow">
-              <Brain className="h-4 w-4 text-primary-foreground" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary shadow-emerald">
+              <Stethoscope className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-sm font-semibold">AI Insights</span>
+            <div>
+              <div className="font-display text-base font-semibold leading-none">
+                MedVision <span className="text-primary">AI</span>
+              </div>
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                Healthcare Intelligence
+              </div>
+            </div>
           </Link>
-          <div className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
+          <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
             <a href="#features" className="hover:text-foreground">Features</a>
-            <a href="#humanitarian" className="hover:text-foreground">Humanitarian</a>
-            <a href="#cta" className="hover:text-foreground">Get started</a>
-          </div>
-          <Button asChild size="sm" className="bg-gradient-primary">
-            <Link to="/dashboard">
-              Open Dashboard <ArrowRight className="ml-1 h-3.5 w-3.5" />
+            <a href="#how" className="hover:text-foreground">How it works</a>
+            <a href="#trust" className="hover:text-foreground">Safety</a>
+          </nav>
+          <div className="flex items-center gap-2">
+            <Link to="/login">
+              <Button variant="ghost" size="sm">Sign in</Button>
             </Link>
-          </Button>
+            <Link to="/login">
+              <Button size="sm" className="shadow-emerald">
+                Get started <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              </Button>
+            </Link>
+          </div>
         </div>
-      </nav>
+      </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg opacity-40" />
-        <div className="absolute inset-0 bg-mesh" />
-        <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-24 text-center">
-          <Badge variant="outline" className="mb-6 gap-1.5 border-primary/30 bg-primary/5 text-primary">
-            <Sparkles className="h-3 w-3" /> v3.2 · Now with humanitarian intelligence
-          </Badge>
-          <h1 className="mx-auto max-w-3xl text-balance text-5xl font-semibold tracking-tight md:text-6xl">
-            The <span className="text-gradient">AI dashboard</span> for teams that move the world forward.
+      <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:pt-28">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-xs font-medium text-muted-foreground shadow-soft">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-success animate-pulse-soft" />
+            HIPAA-ready architecture · Powered by AI
+          </div>
+          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+            Understand every prescription in
+            <span className="text-gradient"> seconds.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-muted-foreground">
-            Real-time analytics, predictive insights, and an always-on AI assistant — designed for humanitarian
-            organizations, AI startups, and modern enterprises.
+          <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+            MedVision AI scans your prescription, explains every medicine in plain language,
+            flags dangerous interactions, and builds a personalized medication plan.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild size="lg" className="bg-gradient-primary shadow-glow">
-              <Link to="/dashboard">
-                Launch Dashboard <ArrowRight className="ml-1.5 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <a href="#features">See features</a>
-            </Button>
+            <Link to="/login">
+              <Button size="lg" className="shadow-emerald">
+                Analyze a prescription <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <a href="#how">
+              <Button size="lg" variant="outline">
+                See how it works
+              </Button>
+            </a>
           </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
+            {["End-to-end encrypted", "No data shared", "Doctor & patient roles"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5">
+                <CheckCircle2 className="h-3.5 w-3.5 text-success" /> {t}
+              </span>
+            ))}
+          </div>
+        </motion.div>
 
-          {/* Preview window */}
-          <div className="mx-auto mt-16 max-w-5xl">
-            <div className="relative rounded-2xl border bg-card p-2 shadow-card">
-              <div className="rounded-xl bg-gradient-to-br from-primary/10 via-background to-accent/10 p-8">
-                <div className="grid gap-4 md:grid-cols-4">
-                  {["Users", "Predictions", "Sessions", "Accuracy"].map((l, i) => (
-                    <div key={l} className="rounded-lg border bg-card p-4 text-left animate-fade-in" style={{ animationDelay: `${i * 80}ms` }}>
-                      <p className="text-xs text-muted-foreground">{l}</p>
-                      <p className="mt-1 text-2xl font-semibold">{["48.2K", "1.28M", "1,842", "96.4%"][i]}</p>
-                      <div className="mt-2 h-1 rounded-full bg-gradient-primary opacity-80" />
-                    </div>
-                  ))}
+        {/* Hero card preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.7 }}
+          className="mx-auto mt-16 max-w-5xl"
+        >
+          <div className="glass overflow-hidden rounded-3xl shadow-emerald">
+            <div className="grid gap-6 p-6 md:grid-cols-2 md:p-8">
+              <div className="rounded-2xl bg-muted/60 p-5">
+                <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
+                  Extracted prescription
+                </div>
+                <pre className="mt-3 whitespace-pre-wrap font-mono text-xs leading-relaxed text-foreground/90">
+{`Dr. M. Rahman
+Patient: Sarah K.
+Date: 14/05/2026
+
+Rx
+1. Amoxicillin 500mg — 1 cap, 3x/day, 7 days
+2. Paracetamol 500mg — 1 tab, every 6h prn
+3. Omeprazole 20mg — 1 cap, before breakfast`}
+                </pre>
+                <div className="mt-3 flex items-center gap-2 text-xs text-success">
+                  <CheckCircle2 className="h-3.5 w-3.5" /> 96% OCR confidence
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="rounded-2xl border bg-card p-4">
+                  <div className="text-xs font-semibold uppercase tracking-widest text-primary">
+                    AI Summary
+                  </div>
+                  <p className="mt-2 text-sm">
+                    You have a 7-day course of antibiotics. Take Amoxicillin every 8 hours,
+                    finish all doses. Use Paracetamol only when needed for fever or pain.
+                    Omeprazole protects your stomach — take it 30 min before breakfast.
+                  </p>
+                </div>
+                <div className="rounded-2xl border bg-warning/10 p-4">
+                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-warning">
+                    <ShieldAlert className="h-3.5 w-3.5" /> 1 interaction detected
+                  </div>
+                  <p className="mt-1.5 text-sm">
+                    Paracetamol + alcohol may increase liver strain. Avoid alcohol during
+                    treatment.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Features */}
-      <section id="features" className="border-t py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Everything you need, beautifully integrated</h2>
-            <p className="mt-3 text-muted-foreground">From raw data to actionable insight in seconds.</p>
+      <section id="features" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="text-xs font-semibold uppercase tracking-widest text-primary">
+            Capabilities
           </div>
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((f, i) => (
-              <div
-                key={f.title}
-                className="group rounded-2xl border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-card animate-fade-in"
-                style={{ animationDelay: `${i * 60}ms` }}
-              >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-primary text-primary-foreground transition-transform group-hover:scale-110">
-                  <f.icon className="h-5 w-5" />
-                </div>
-                <h3 className="font-semibold">{f.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{f.desc}</p>
+          <h2 className="mt-2 font-display text-4xl font-semibold tracking-tight">
+            A complete medication intelligence layer
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Built like a real healthcare SaaS — modular, scalable, and production-ready.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+              className="glass rounded-2xl p-6 shadow-soft transition-shadow hover:shadow-emerald"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-mint">
+                <f.icon className="h-5 w-5 text-primary" />
               </div>
-            ))}
-          </div>
+              <h3 className="mt-4 font-display text-lg font-semibold">{f.title}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">{f.body}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Humanitarian */}
-      <section id="humanitarian" className="border-t bg-mesh py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-2 md:items-center">
-          <div>
-            <Badge className="mb-4 bg-accent/15 text-accent-foreground">Humanitarian AI</Badge>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Built for impact at <span className="text-gradient">global scale.</span>
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              Visualize education access, child welfare metrics, and resource allocation. Predictive models surface
-              risks before they escalate — so teams act faster, with clarity.
-            </p>
-            <ul className="mt-6 space-y-2 text-sm">
-              {["Education & enrollment analytics", "Child welfare risk scoring", "Nutrition supply anomaly detection", "Resource allocation predictions"].map((t) => (
-                <li key={t} className="flex items-center gap-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl border bg-card p-6 shadow-card">
-            <div className="mb-4 flex items-center justify-between">
-              <p className="text-sm font-semibold">Region risk overview</p>
-              <Badge variant="outline">Live</Badge>
+      {/* How it works */}
+      <section id="how" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="grid gap-10 md:grid-cols-3">
+          {[
+            { n: "01", t: "Upload", b: "Drag and drop a prescription image or PDF." },
+            { n: "02", t: "Analyze", b: "Our AI extracts text and structures every medicine." },
+            { n: "03", t: "Act", b: "Get summaries, interaction alerts, and reminders." },
+          ].map((s) => (
+            <div key={s.n} className="rounded-2xl border bg-card p-6 shadow-soft">
+              <div className="font-display text-5xl font-bold text-primary/20">{s.n}</div>
+              <h3 className="mt-4 font-display text-xl font-semibold">{s.t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{s.b}</p>
             </div>
-            <div className="space-y-3">
-              {[
-                ["Sub-Saharan Africa", 62],
-                ["South Asia", 48],
-                ["MENA", 55],
-                ["Latin America", 31],
-                ["East Asia", 27],
-              ].map(([r, v]) => (
-                <div key={r as string}>
-                  <div className="mb-1 flex justify-between text-xs">
-                    <span>{r}</span>
-                    <span className="text-muted-foreground">{v}%</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-secondary">
-                    <div className="h-full bg-gradient-primary" style={{ width: `${v}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section id="cta" className="border-t py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Ready to see it in action?</h2>
-          <p className="mt-3 text-muted-foreground">Open the live dashboard with realistic demo data.</p>
-          <Button asChild size="lg" className="mt-6 bg-gradient-primary shadow-glow">
-            <Link to="/dashboard">
-              Launch Dashboard <ArrowRight className="ml-1.5 h-4 w-4" />
-            </Link>
-          </Button>
+      {/* Trust */}
+      <section id="trust" className="mx-auto max-w-7xl px-6 py-24">
+        <div className="glass rounded-3xl p-10 text-center shadow-emerald">
+          <h2 className="font-display text-3xl font-semibold">
+            Built with care. Designed for clinicians and patients.
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+            Encrypted storage, role-based access for doctors and patients, and a strict
+            no-sharing data policy. MedVision AI augments — it never replaces — your physician.
+          </p>
+          <Link to="/login" className="mt-6 inline-block">
+            <Button size="lg" className="shadow-emerald">
+              Try MedVision AI free
+            </Button>
+          </Link>
         </div>
       </section>
 
-      <footer className="border-t py-8 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} AI Insights Dashboard · Portfolio project
+      <footer className="border-t py-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 text-xs text-muted-foreground md:flex-row">
+          <div>© {new Date().getFullYear()} MedVision AI. For educational use.</div>
+          <div>Not a substitute for professional medical advice.</div>
+        </div>
       </footer>
     </div>
   );
