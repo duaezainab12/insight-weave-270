@@ -1,5 +1,6 @@
 # AI Insights Dashboard
 
+https://dashbored-ai.lovable.app/
 A modern AI-powered analytics dashboard built with React, TypeScript, Tailwind CSS, and FastAPI.  
 Designed for showcasing Artificial Intelligence, data analytics, visualization, and real-time monitoring skills in a professional portfolio.
 
