@@ -183,7 +183,7 @@ Railway
 Docker
 Docker Support
 
-Run complete project using Docker:
+Run complete project using Docker:https://dashbored-ai.lovable.app/
 
 docker-compose up --build
 Future Improvements
